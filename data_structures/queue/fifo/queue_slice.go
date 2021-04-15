@@ -10,12 +10,14 @@ type MyQueue struct {
 	lock sync.RWMutex
 }
 
+// Add element to queue
 func (q *MyQueue) Enqueue(name string) {
 	q.lock.Lock()
 	defer q.lock.Unlock()
 	q.queue = append(q.queue, name)
 }
 
+// 
 func (q *MyQueue) Dequeue() error {
 	if len(q.queue) > 0 {
 		q.lock.Lock()
@@ -26,6 +28,7 @@ func (q *MyQueue) Dequeue() error {
 	return fmt.Errorf("pop error: queue is empty")
 }
 
+//
 func (q *MyQueue) Front() (string, error) {
 	if len(q.queue) > 0 {
 		q.lock.Lock()
@@ -35,18 +38,26 @@ func (q *MyQueue) Front() (string, error) {
 	return "", fmt.Errorf("pop error: queue is empty")
 }
 
+// 
 func (q *MyQueue) IsEmpty() bool {
 	return len(q.queue) == 0
 }
 
+//
 func (q *MyQueue) Size() int {
 	return len(q.queue)
 }
 
+//
 func (q *MyQueue) Print() {
 	for val := range(q.queue) {
 		fmt.Println(q.queue[val])
 	}
+}
+
+// Clear queue
+func (q *MyQueue) Clear() {
+	
 }
 
 func main() {

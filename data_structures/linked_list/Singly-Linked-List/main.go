@@ -46,7 +46,7 @@ func (i *ItemLinkedList) Insert(pos int, s string) error {
 	defer i.lock.Unlock()
 
 	if pos < 0 || pos > i.size {
-		return fmt.Errorf("Index out of range")
+		return fmt.Errorf("index out of range")
 	}
 
 	node := Node{
@@ -127,6 +127,20 @@ func (i *ItemLinkedList) Size() int {
 	return i.size
 }
 
+func (i *ItemLinkedList) Reverse() {
+	var cursor *Node = i.head
+	var prev *Node = nil
+
+	for cursor != nil {
+		next := cursor.next
+		cursor.next = prev
+		prev = cursor
+		cursor = next
+	}
+	i.head = prev
+}
+
+
 func (i *ItemLinkedList) Print() {
 	i.lock.Lock()
 	defer i.lock.Unlock()
@@ -163,5 +177,7 @@ func main() {
 
 	sLinkedList.RemoveAt(0)
 	fmt.Println(sLinkedList.Size())
+	sLinkedList.Print()
+	sLinkedList.Reverse()
 	sLinkedList.Print()
 }

@@ -128,6 +128,9 @@ func (i *ItemLinkedList) Size() int {
 }
 
 func (i *ItemLinkedList) Reverse() {
+	i.lock.Lock()
+	defer i.lock.Unlock()
+
 	var cursor *Node = i.head
 	var prev *Node = nil
 

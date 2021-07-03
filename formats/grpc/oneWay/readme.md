@@ -1,0 +1,1 @@
+# Basic example of simple GRPC service (without streaming)

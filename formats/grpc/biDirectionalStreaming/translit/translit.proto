@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package translit;
+
+option go_package = "./translit";
+
+service Translit {
+    rpc EnRu (stream Word) returns (stream Word);
+}
+
+message Word {
+    string word = 1;
+}

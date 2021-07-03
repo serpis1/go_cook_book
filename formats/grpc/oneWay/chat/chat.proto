@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package chat;
+
+option go_package = "./chat";
+
+service ChatService {
+    rpc sendMessage (ChatMesage) returns (ChatMesage);
+}
+
+message ChatMesage {
+    int64 id = 1;
+    string text = 2;
+}
